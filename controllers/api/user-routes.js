@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post, Vote } = require('../../models');
+const { User, Post, Comment, Vote } = require('../../models');
 
 // GET /api/users
 router.get('/', (req, res) => {
@@ -44,8 +44,8 @@ router.get('/:id', (req, res) => {
       })
         .then(dbUserData => {
             if (!dbUserData) {
-            res.status(404).json({ message: 'No user found with this id' });
-            return;
+              res.status(404).json({ message: 'No user found with this id' });
+              return;
             }
             res.json(dbUserData);
         })
@@ -84,7 +84,7 @@ router.post('/login', (req, res) => {
     // expects {email: 'lernantino@gmail.com', password: 'password1234'}
     User.findOne({
         where: {
-        email: req.body.email
+          email: req.body.email
         }
     })
     .then(dbUserData => {
@@ -107,7 +107,7 @@ router.post('/login', (req, res) => {
       req.session.username = dbUserData.username;
       req.session.loggedIn = true;
 
-    res.json({ user: dbUserData, message: 'You are now logged in!' });
+      res.json({ user: dbUserData, message: 'You are now logged in!' });
     });  
   })
 });
@@ -118,8 +118,7 @@ router.post('/logout', (req, res) => {
     req.session.destroy(() => {
       res.status(204).end();
     });
-  }
-  else {
+  } else {
     res.status(404).end();
   }
 });

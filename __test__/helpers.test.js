@@ -1,4 +1,4 @@
-
+const { utils } = require('../utils')
 const {format_date, format_plural, format_url} = require('../utils/helpers');
 
 // tests that format_date() takes date() object and returns dates in the MM/DD/YY format
@@ -25,3 +25,5 @@ test('format_url() returns a simplified url string', () => {
     expect(url2).toBe('coolstuff.com');
     expect(url3).toBe('google.com');
 });
+
+// test out npm ignore file to ignore media-typer. 
